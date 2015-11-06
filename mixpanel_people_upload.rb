@@ -25,7 +25,7 @@ people.each do |person|
     lastSeen: person["$last_seen"],
     username: person["$username"],
     phone: person["Phone Number"],
-     #Make sure is a string like Jan 2015
+    #Make sure is a string like Jan 2015
     cohort: cohort,
     referring_domain: person["$initial_referring_domain"],
     pipedrive_deal_id: person["Pipedrive Deal ID"],
@@ -41,7 +41,9 @@ people.each do |person|
 
   analytics.identify(
     user_id: person["$email"] || person["$distinct_id"],
-    traits: segment_trait)
+    traits: segment_trait,
+    integrations: { all: false, :'Customer.io' => true }
+  )
 end
 
 # Find all duplicate emails

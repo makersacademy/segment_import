@@ -26,7 +26,8 @@ def upload(from, to)
         event: event["event"],
         timestamp: Time.strptime(event["properties"]["time"].to_s, "%s"),
         context: event["properties"],
-        properties: event["properties"]
+        properties: event["properties"],
+        integrations: { all: false, :'Customer.io' => true }
       )
     end
   end
