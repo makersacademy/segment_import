@@ -11,7 +11,7 @@ people.map! { |person| person[0] }.uniq.each do |email|
     user_id: email,
     traits: {
       email: email,
-      signed_up_for_newsletter: true,
+      newsletter: true,
       integrations: { all: false, :'Customer.io' => true }
     })
 end

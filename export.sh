@@ -14,7 +14,7 @@ ruby mixpanel_people_upload.rb
 echo "uploading newsletter subscribers"
 ruby newsletter_upload.rb
 
-echo "uploading mixpanel events"
-ruby mixpanel_event_upload.rb
+#echo "uploading mixpanel events"
+#ruby mixpanel_event_upload.rb
 
 echo "done!"
