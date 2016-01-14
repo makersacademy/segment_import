@@ -26,14 +26,18 @@ people.each do |person|
     username: person["$username"],
     phone: person["Phone Number"],
     #Make sure is a string like Jan 2015
-    cohort: cohort,
-    referring_domain: person["$initial_referring_domain"],
-    pipedrive_deal_id: person["Pipedrive Deal ID"],
-    course_type: person["Course Type"],
-    interview_quality: person["Interview Quality"],
-    course_quality: person["Course Quality"],
-    current_stage: person["Current Stage"]
+    Cohort: cohort,
+    :'Referring Domain' => person["$initial_referring_domain"],
+    :'Pipedrive Deal ID' => person["Pipedrive Deal ID"],
+    :'Course Type' => person["Course Type"],
+    :'Interview Quality' => person["Interview Quality"],
+    :'Course Quality' => person["Course Quality"],
+    :'Current Stage' => person["Current Stage"]
   }
+
+  if person["Current Stage"] == "Signed up for newsletter"
+    segment_trait[:Newsletter] = true
+  end
 
   if person["$first_name"] && person["$last_name"]
     segment_trait[:name] = person["$first_name"] + " " + person["$last_name"]
