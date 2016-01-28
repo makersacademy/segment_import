@@ -1,7 +1,7 @@
 require 'csv'
 require './segment'
 
-people = CSV.read("people_export.csv")
+people = CSV.read("pipedrive_export.csv")
 
 headers = people.shift
 
@@ -9,8 +9,6 @@ p "uploading people"
 people.map! do |person|
   person = Hash[headers.zip(person)]
 end
-
-p people.first
 
 people.each do |person|
 
@@ -25,6 +23,8 @@ people.each do |person|
     stage = (course_type == "Online") ? "Online Application Submitted" : "Application Submitted"
   end
 
+
+  p "Uploading person #{person}"
 
   segment_trait = {
     email: email,
