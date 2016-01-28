@@ -16,6 +16,7 @@ people.each do |person|
   email = person["Person - Email"]
   stage = person["Deal - Stage"]
   course_type = person["Person - Course Type"]
+  name = person["Person - Name"].match(/([a-z\-]+) ?(.+)?/i)
 
   next if cohort.empty? || cohort == "Hidden"
 
@@ -24,14 +25,17 @@ people.each do |person|
   end
 
 
-  p "Uploading person #{person}"
 
   segment_trait = {
+    firstName: name[1],
+    lastName: name[2],
     email: email,
     Cohort: cohort,
     :"Course Type" => course_type,
     :'Current Stage' => stage
   }
+
+  p "Uploading person #{segment_trait}"
 
   analytics.identify(
     user_id: email,
@@ -40,5 +44,5 @@ people.each do |person|
   )
 end
 
-p "finished uploading people to segment"
 analytics.flush
+p "finished uploading people to segment"
