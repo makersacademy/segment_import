@@ -16,7 +16,9 @@ people.each do |person|
   email = person["Person - Email"]
   stage = person["Deal - Stage"]
   course_type = person["Person - Course Type"]
-  name = person["Person - Name"].match(/([a-z\-]+) ?(.+)?/i)
+  name = person.fetch("Person - Name", "").match(/([a-z\-]+) ?(.+)?/i)
+  first_name = name ? name[1] : ""
+  last_name = name ? name[2] : ""
 
   next if cohort.empty? || cohort == "Hidden"
 
@@ -27,8 +29,8 @@ people.each do |person|
 
 
   segment_trait = {
-    firstName: name[1],
-    lastName: name[2],
+    firstName: first_name,
+    lastName: last_name,
     email: email,
     Cohort: cohort,
     :"Course Type" => course_type,
