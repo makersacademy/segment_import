@@ -7,7 +7,7 @@ If you need to update all the segment data from Pipedrive follow these steps:
 
 1. Go to [Pipedrive](https://makersacademy.pipedrive.com/deals/filter/208) and
    export all the users as a CSV (using the button on the right hand side)
-1. Move the download to the current folder, and rename it as `people_export.csv`
+1. Move the download to the current folder, and rename it as `pipedrive_export.csv`
 1. Run the script `ruby pipedrive_people_update.rb`
 
 
@@ -27,5 +27,3 @@ sh export.sh
 
 There are additional instructions in that export.sh file for what you need to do
 to get things working
-
-
