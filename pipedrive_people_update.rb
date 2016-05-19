@@ -2,7 +2,6 @@ require 'csv'
 require './segment'
 
 people = CSV.read("pipedrive_export.csv")
-
 headers = people.shift
 
 p "uploading people"
@@ -20,11 +19,11 @@ people.each do |person|
 
   next if cohort.empty? || cohort == "Hidden"
 
-  if stage == "Application"
+  if person["Person - Lost deals"].to_i > 0
+    stage = "Deal Lost"
+  elsif stage == "Application"
     stage = (course_type == "Online") ? "Online Application Submitted" : "Application Submitted"
   end
-
-
 
   segment_trait = {
     firstName: name[1],
