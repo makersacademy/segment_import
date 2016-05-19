@@ -1,6 +1,10 @@
 require 'csv'
 require './segment'
 
+analytics.track(user_id: "nikesh@makersacademy.com", event: "Application Submitted")
+analytics.flush
+raise "stop here"
+
 people = CSV.read("people_export.csv")
 
 headers = people.shift
